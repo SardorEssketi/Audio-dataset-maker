@@ -1,0 +1,71 @@
+paths:
+  raw_audio: data/raw
+  normalized_audio: data/normalized
+  denoised_audio: data/denoised
+  vad_segments: data/vad_segments
+  transcriptions: data/transcriptions
+  # Final user-facing artifacts are exported here as:
+  # <outputs>/<video_name>/{vad_segments/,metadata/}
+  outputs: data/outputs
+  models: models
+audio:
+  sample_rate: 16000
+  channels: 1
+  format: wav
+  bit_depth: 16
+noise_reduction:
+  enabled: true
+  stationary: true
+  prop_decrease: 1.0
+vad:
+  aggressiveness: 3
+  frame_duration_ms: 30
+  padding_duration_ms: 300
+  min_silence_duration_ms: 500
+  min_segment_duration_s: 1.0
+  max_segment_duration_s: 30.0
+whisper:
+  model_name: OvozifyLabs/whisper-small-uz-v1
+  language: uz
+  batch_size: 8
+  compute_type: float16
+  mode: auto
+  device: cuda
+  server:
+    url: ''
+    api_key_env: WHISPER_SERVER_API_KEY
+    timeout_sec: 180
+    file_field: file
+    response_text_field: text
+huggingface:
+  repo_id: your-username/your-dataset
+  token: your_hf_token
+  private: false
+filtering:
+  enabled: true
+  min_length: 3
+  max_length: 1000
+  min_word_count: 1
+  min_uzbek_char_ratio: 0.7
+  max_repetition_ratio: 0.7
+download:
+  max_workers: 4
+  chunk_size: 8192
+  scrape:
+    enabled: true
+    interval_minutes: 180
+    registry_path: data/scrape_registry.json
+    pipeline:
+      enabled: true
+      source: data/raw
+      type: local
+      skip_push: true
+    sources:
+    - type: youtube
+      name: youtube
+      url: https://www.youtube.com/watch?v=yft8ID5rc3k
+      max_videos: 50
+      include_keywords: []
+      allow_shorts: false
+      min_duration_sec: 60
+      max_duration_sec: 0

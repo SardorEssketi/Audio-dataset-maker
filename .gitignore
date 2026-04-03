@@ -1,0 +1,98 @@
+# Python
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+.venv*/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Agent/editor local state
+.claude/
+
+# Data directories
+data/raw/*
+data/normalized/*
+data/denoised/*
+data/vad_segments/*
+data/transcriptions/*
+data/users/
+data/*_out/
+data/_zip_test_*/
+data/*.db
+data/bot_state.json
+data/scrape_registry.json
+data/encryption.key
+!data/raw/.gitkeep
+!data/normalized/.gitkeep
+!data/denoised/.gitkeep
+!data/vad_segments/.gitkeep
+!data/transcriptions/.gitkeep
+
+# Models
+models/*
+!models/.gitkeep
+
+# Local databases (SQLite)
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Hugging Face cache
+.cache/
+huggingface/
+
+# Config with secrets
+config/config.local.yaml
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Frontend build artifacts (also covered by frontend/.gitignore)
+frontend/node_modules/
+frontend/dist/
+
+# Large local artifacts
+job_*_*.zip

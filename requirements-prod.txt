@@ -1,0 +1,33 @@
+torch==2.5.1
+torchaudio==2.5.1
+transformers==4.46.3
+datasets==3.1.0
+accelerate==1.1.1
+pydub==0.25.1
+soundfile==0.12.1
+librosa==0.10.2.post1
+webrtcvad-wheels==2.0.14; platform_system == "Windows"
+webrtcvad==2.0.10; platform_system != "Windows"
+noisereduce==3.0.3
+huggingface-hub>=0.33.5,<1.0
+pyyaml==6.0.2
+requests==2.32.3
+tqdm==4.67.1
+numpy==1.26.4
+scipy==1.11.4
+yt-dlp==2025.2.19
+python-telegram-bot==20.7
+
+# Web backend dependencies
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+sqlalchemy==2.0.25
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-dotenv==1.0.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+cryptography==41.0.7
+websockets==12.0
+

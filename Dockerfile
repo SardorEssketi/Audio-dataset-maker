@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Копируем backend
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements-prod.txt .
+RUN pip install --no-cache-dir -r requirements-prod.txt
 
 COPY backend/ ./backend/
 COPY scripts/ ./scripts/

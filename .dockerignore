@@ -1,0 +1,41 @@
+# Big local environments / caches
+.venv*/
+venv/
+ENV/
+env/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# VCS / IDE
+.git/
+.idea/
+.vscode/
+*.iml
+
+# Local config
+.env
+.env.*
+
+# Runtime data / large artifacts (mounted via volumes in docker-compose)
+data/
+*.db
+*.zip
+*.log
+
+# Frontend build artifacts / deps (must never be in build context)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+

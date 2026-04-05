@@ -1,0 +1,29 @@
+{
+	# Optional: set ACME account email via env var.
+	# email {env.ACME_EMAIL}
+}
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	# Backend HTTP API
+	handle /api/* {
+		reverse_proxy backend:8000
+	}
+
+	# Backend WebSocket
+	handle /ws/* {
+		reverse_proxy backend:8000
+	}
+
+	# Health endpoint (useful for debugging without exposing :8000)
+	handle /health {
+		reverse_proxy backend:8000
+	}
+
+	# Frontend SPA/static
+	handle {
+		reverse_proxy frontend:80
+	}
+}
+

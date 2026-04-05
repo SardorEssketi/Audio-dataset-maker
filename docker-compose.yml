@@ -1,13 +1,29 @@
 services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: audio-pipeline-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
+
   backend:
     image: ghcr.io/sardoressketi/audio-dataset-maker-backend:latest
     pull_policy: always
     container_name: audio-pipeline-backend
-    ports:
-      - "8000:8000"
     environment:
       - DATABASE_URL=sqlite:///./data/pipeline.db
       - SECRET_KEY=${SECRET_KEY:-your-secret-key-change-in-production}
+      # Set this in `.env` for production, e.g. `https://your-domain.tld`.
       - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:80,http://localhost:3000}
     volumes:
       - ./data:/app/data
@@ -24,11 +40,11 @@ services:
     image: ghcr.io/sardoressketi/audio-dataset-maker-frontend:latest
     pull_policy: always
     container_name: audio-pipeline-frontend
-    ports:
-      - "80:80"
     depends_on:
       - backend
     restart: unless-stopped
 
 volumes:
   data:
+  caddy_data:
+  caddy_config:

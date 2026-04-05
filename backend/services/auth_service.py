@@ -32,7 +32,8 @@ logger = logging.getLogger(__name__)
 # NOTE: Plain bcrypt truncates passwords at 72 bytes which can cause registration/login failures
 # for long passphrases (including some non-ASCII inputs). `bcrypt_sha256` avoids this by
 # pre-hashing the password with SHA-256 before running bcrypt.
-pwd_context = CryptContext(schemes=["bcrypt_sha256"], deprecated="auto")
+# Keep legacy bcrypt hashes verifiable (older users), but default new hashes to bcrypt_sha256.
+pwd_context = CryptContext(schemes=["bcrypt_sha256", "bcrypt"], deprecated="auto")
 
 JWT_ALGORITHM = "HS256"
 

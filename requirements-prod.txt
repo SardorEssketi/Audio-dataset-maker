@@ -24,8 +24,7 @@ sqlalchemy==2.0.25
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 python-dotenv==1.0.0
-pydantic==2.5.3
+pydantic[email]==2.5.3
 pydantic-settings==2.1.0
-email-validator>=2.0.0,<3
 cryptography==41.0.7
 websockets==12.0

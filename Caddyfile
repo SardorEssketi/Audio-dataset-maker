@@ -1,6 +1,12 @@
 {
 	# Optional: set ACME account email via env var.
 	# email {env.ACME_EMAIL}
+
+	# Some networks/clients misbehave with HTTP/3 (QUIC) and trigger TLS internal errors in browsers.
+	# Stick to HTTP/1.1 + HTTP/2 for maximum compatibility.
+	servers {
+		protocols h1 h2
+	}
 }
 
 {$DOMAIN} {
@@ -26,4 +32,3 @@
 		reverse_proxy frontend:80
 	}
 }
-

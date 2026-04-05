@@ -3,8 +3,11 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+ARG NODE_OPTIONS=--max-old-space-size=1536
+ENV NODE_OPTIONS=${NODE_OPTIONS}
+
 COPY frontend/package*.json ./
-RUN npm ci
+RUN npm ci --no-audit --no-fund
 
 COPY frontend/ ./
 RUN npm run build

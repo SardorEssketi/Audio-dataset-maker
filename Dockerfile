@@ -11,7 +11,10 @@ RUN apt-get update && apt-get install -y \
 
 # Копируем backend
 COPY requirements-prod.txt .
-RUN pip install --no-cache-dir -r requirements-prod.txt
+RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu \
+        torch==2.5.1 \
+        torchaudio==2.5.1 \
+    && pip install --no-cache-dir -r requirements-prod.txt
 
 COPY backend/ ./backend/
 COPY scripts/ ./scripts/

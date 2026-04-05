@@ -1,10 +1,7 @@
-version: '3.8'
-
 services:
   backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/sardoressketi/audio-dataset-maker-backend:latest
+    pull_policy: always
     container_name: audio-pipeline-backend
     ports:
       - "8000:8000"
@@ -17,15 +14,15 @@ services:
       - ./config:/app/config
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      # Avoid requiring curl/wget in the image.
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()"]
       interval: 30s
       timeout: 10s
       retries: 3
 
   frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
+    image: ghcr.io/sardoressketi/audio-dataset-maker-frontend:latest
+    pull_policy: always
     container_name: audio-pipeline-frontend
     ports:
       - "80:80"
